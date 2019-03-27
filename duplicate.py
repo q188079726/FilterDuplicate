@@ -15,8 +15,10 @@ def duplicate():
             b = file_sets[j]
             c = b[1]&a[1]
             if len(c) > 0:
+                log = 'p1:'+str(a[0])+'\n'+'p2:'+str(b[0])+'\n'+str(c)+'\n=====================\n\n\n'
+                print(log)
                 with open(logPath,'a') as f:
-                    f.write('p1:'+str(a[0])+'\n'+'p2:'+str(b[0])+'\n'+str(c)+'\n=====================\n\n\n')
+                    f.write(log)
 
 def gci(filepath):
     #遍历filepath下所有文件，包括子目录
