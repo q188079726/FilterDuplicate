@@ -42,7 +42,7 @@ def gci(filepath):
 
 def deleteFile():
     path_pattern = re.compile(r'p\d:(.*)\n')
-    file_names_pattern = re.compile(r'\'(.*?)//')
+    file_names_pattern = re.compile(r'\'(\b.*?)//')
     with open(logPath,'r') as f:
         string =  f.read()
         for paths in string.split(divide):
@@ -52,20 +52,20 @@ def deleteFile():
                 p = r.group(1)
             else:
                 continue
-            file_names = re.search(file_names_pattern,paths)
+            file_names = re.findall(file_names_pattern,paths)
             
-            for x in file_names.groups():
+            for x in file_names:
                 final_file_path = os.path.join(p,x)
                 if os.path.isfile(final_file_path):
                     if os.path.exists(final_file_path):
-                        print(final_file_path)
+                        print('run',final_file_path)
                         try :
                             os.remove(final_file_path)
                         except Exception as e:
-                            print(final_file_path,e)
+                            print('err',final_file_path,e)
     print('finished delete')
 
-# if __name__ == "__main__":
-#duplicate()
-deleteFile()
+if __name__ == "__main__":
+    duplicate()
+    # deleteFile()
     
